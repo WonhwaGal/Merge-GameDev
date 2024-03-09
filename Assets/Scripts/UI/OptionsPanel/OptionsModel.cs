@@ -28,7 +28,11 @@ namespace Code.MVC
             _actives = saveService.Actives;
             ServiceLocator.Container.RequestFor<AchievementService>().OnUnlockAchiev
                 += OnUnlockAchiev;
+#if UNITY_EDITOR
+            //Do nothing
+#else
             UpdateSOInfo(saveService.FetchedAchievs);
+#endif
         }
 
         public void UpdateSOInfo(List<AchievementsFetchPlayer> fetchedAchievs)

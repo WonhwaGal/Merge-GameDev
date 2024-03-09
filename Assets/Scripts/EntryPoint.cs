@@ -45,8 +45,13 @@ public class EntryPoint : MonoBehaviour
 
     public void LoadNewScene(bool withProgress)
     {
-        var nextScene = GP_Device.IsMobile() 
+        var nextScene = Constants.GameScene;
+#if UNITY_EDITOR
+        nextScene = Constants.GameScene;
+#else
+            nextScene = GP_Device.IsMobile() 
             ? Constants.GameSceneMobile : Constants.GameScene;
+#endif
         SceneManager.LoadSceneAsync(nextScene);
 
         if (withProgress)

@@ -12,10 +12,15 @@ namespace Code.DropLogic
 
             _collisionsIgnored = true;
             if (collision.gameObject.TryGetComponent(out DropObject drop))
+            {
                 GameEventSystem.Send(new BombEvent(drop.Rank));
-
-            GameEventSystem.Send(new SoundEvent(SoundType.Poof, true));
-            GameEventSystem.Send(new ManageDropEvent(this, true, withEffects: true));
+                GameEventSystem.Send(new ManageDropEvent(this, returnToPool: true, withEffects: false));
+            }
+            else
+            {
+                GameEventSystem.Send(new SoundEvent(SoundType.Poof, true));
+                GameEventSystem.Send(new ManageDropEvent(this, returnToPool: true, withEffects: true));
+            }
         }
 
         protected override void OnDrop()

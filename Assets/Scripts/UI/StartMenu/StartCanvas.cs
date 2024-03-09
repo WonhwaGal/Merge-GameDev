@@ -21,7 +21,11 @@ namespace Code.MVC
         {
             _startText = StartNewButton.GetComponentInChildren<TextMeshProUGUI>();
             _continueText = ContinueButton.GetComponentInChildren<TextMeshProUGUI>();
+#if UNITY_EDITOR
+            _isMobile = false;
+#else
             _isMobile = GP_Device.IsMobile();
+#endif
             SetView();
         }
 

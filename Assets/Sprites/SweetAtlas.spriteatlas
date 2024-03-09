@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 2048
+      m_MaxTextureSize: 4096
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 2
@@ -62,6 +62,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: aac2ea50c4a190d4e829d071aced9a3b, type: 3}
   - {fileID: 21300000, guid: c97b9d60ba820ed4cb4b3fcc9e63600d, type: 3}
   - {fileID: 21300000, guid: 69a55f90309d63141baa85d8b3125d30, type: 3}
+  - {fileID: 21300000, guid: b8972511b7043e84d8e7e00da27fbf79, type: 3}
+  - {fileID: 21300000, guid: c293a9413d89a4744b04472893c10287, type: 3}
   - {fileID: 21300000, guid: 26735c4133ea2ea42bb412b840ec849b, type: 3}
   - {fileID: 21300000, guid: f8b84e717c3123a418088339002aac86, type: 3}
   - {fileID: 21300000, guid: 425358a141eca5c438f67fcf7228921e, type: 3}
@@ -100,24 +102,33 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d614f149383ad4349bdab1ee5474b7a7, type: 3}
   - {fileID: 21300000, guid: 0f5804f9b9609e941917bc7713641fc2, type: 3}
   - {fileID: 21300000, guid: fa42312a65f1fe8428e852e3fcfb5090, type: 3}
+  - {fileID: 21300000, guid: 2100906a560b4f34cb0de47063203ec8, type: 3}
+  - {fileID: 21300000, guid: ffd9b57a7b19a9a438ed91f24da8a8b6, type: 3}
   - {fileID: 21300000, guid: 64f6d1aa66c876a45b4f98f3d54584b7, type: 3}
   - {fileID: 21300000, guid: 37eebbba9715b594c8bc34ec6b74ec59, type: 3}
   - {fileID: 21300000, guid: 652a1c1b0fd8c3d4cb6b35decdcc88db, type: 3}
+  - {fileID: 21300000, guid: 412e104b63f00414d9290805b80942d1, type: 3}
   - {fileID: 21300000, guid: de5f697b8df0b544ebaed5a7e544d8ba, type: 3}
   - {fileID: 21300000, guid: f376f08bbd256db459ea56d07a749c72, type: 3}
+  - {fileID: 21300000, guid: cb85d69b5109c46458e3b23fd980b24f, type: 3}
+  - {fileID: 21300000, guid: 804e81db505d6cd4394030e2363b5147, type: 3}
   - {fileID: 21300000, guid: e2798c4c966399b48bdedf8329f987db, type: 3}
   - {fileID: 21300000, guid: 329b815cc33eadb4e90d84f8aa783460, type: 3}
   - {fileID: 21300000, guid: caf7cf5c3fc09a7488ab3d1973c07cf9, type: 3}
   - {fileID: 21300000, guid: 0222c46cd3678294780b8945601ce6d4, type: 3}
   - {fileID: 21300000, guid: 23d2434d80883374db5d2c3ffbb36f4b, type: 3}
+  - {fileID: 21300000, guid: d382f96d26cbe0a4a99ac54d87ed00ed, type: 3}
   - {fileID: 21300000, guid: 267e5c6d289cad14783852f9e12a82dc, type: 3}
+  - {fileID: 21300000, guid: 04159cbdb3f5c664ca96f0837ea0378e, type: 3}
   - {fileID: 21300000, guid: 461900ed31ce96c4eb3156e21bf60cb4, type: 3}
   - {fileID: 21300000, guid: 748e900ef339c39498d7022b408b1336, type: 3}
   - {fileID: 21300000, guid: 1e1d4c1ed5852e141add67e71633b6f6, type: 3}
-  - {fileID: 21300000, guid: 9ff74f4e49af5d5489ab7cac26a085f5, type: 3}
   - {fileID: 21300000, guid: 6257be9eec78e54478f14f9c6bf1ff26, type: 3}
   - {fileID: 21300000, guid: f804d4ce5d226ae4b9e61b2dfad0245c, type: 3}
   - {fileID: 21300000, guid: f31d45ce433bf4f48804a7c52a35bd07, type: 3}
+  - {fileID: 21300000, guid: 9aec99de9f03b6b47a309e463bc670d0, type: 3}
+  - {fileID: 21300000, guid: 4fdc04ee2e5459a4191eb97396e2fadf, type: 3}
+  - {fileID: 21300000, guid: 8e3826eee49d8c741911f9e058f23d82, type: 3}
   - {fileID: 21300000, guid: 8ee7aa1f81f0be244b1758ac8f5c46a6, type: 3}
   - {fileID: 21300000, guid: 23814cafc31bb7c4a89a9c3005db7c78, type: 3}
   - {fileID: 21300000, guid: 4c6a2eafc291ce94cb7079d16ff06716, type: 3}
@@ -135,6 +146,8 @@ SpriteAtlas:
   - Chitryak
   - Croissant
   - Cake_face
+  - dot_background
+  - cup
   - CoolDoughnut_mimic
   - Bezeshka_face
   - table
@@ -173,24 +186,33 @@ SpriteAtlas:
   - CherryPie
   - flags
   - JapaneseBun_new_mimic
+  - chalk_text
+  - chalk_menu
   - achievs
   - JapaneseBun_new
   - Vrednyuchka_face
+  - arrow_1
   - Bezeshka
   - rewardLock
+  - panel_faded
+  - lamp_on2
   - Static_11
   - Static_9
   - play
   - GirlyCookie_mimic
   - rewardBoxMask
+  - lamp_off2
   - JapaneseBun_new_face
+  - CFX2_T_GlowSoft
   - Leaders
   - CherryPie_mimic
   - carpet
-  - lamp
   - CoolDoughnut_face
   - noMusic
   - GirlyCookie
+  - Chalk
+  - small table
+  - arrow_3
   - Static_10
   - Cake
   - pictures

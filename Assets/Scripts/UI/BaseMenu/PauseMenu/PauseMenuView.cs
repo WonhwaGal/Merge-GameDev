@@ -20,8 +20,12 @@ namespace Code.MVC
 
         public void ShowContent()
         {
+#if UNITY_EDITOR
+            _bakeryButton.gameObject.SetActive(false);
+#else
             if (GP_Device.IsMobile())
                 _bakeryButton.gameObject.SetActive(true);
+#endif
             GameEventSystem.Send(new SaveEvent(FinalScore, onlyScore: false));
         }
 

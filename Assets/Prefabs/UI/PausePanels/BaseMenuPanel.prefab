@@ -203,8 +203,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.9398193, y: 0}
-  m_SizeDelta: {x: 1327.5988, y: 1919}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2613.6113, y: 1919}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2820833392070066732
 CanvasRenderer:
@@ -227,15 +227,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.679081, g: 0.90943396, b: 0.073784195, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: cb85d69b5109c46458e3b23fd980b24f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -418,8 +418,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4204373849445295548}
   - component: {fileID: 4204373849445295550}
-  - component: {fileID: 4204373849445295551}
-  - component: {fileID: 1811019204176371661}
   m_Layer: 5
   m_Name: BaseMenuPanel
   m_TagString: Untagged
@@ -459,59 +457,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4204373849445295549}
   m_CullTransparentMesh: 1
---- !u!114 &4204373849445295551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4204373849445295549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7058824}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!114 &1811019204176371661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4204373849445295549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 138916de30f23b84e985955ec34a8b89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scoreValue: {fileID: 0}
-  _bestScoreValue: {fileID: 0}
-  _loseText: {fileID: 0}
-  _bestScoreText: {fileID: 0}
-  _retryButton: {fileID: 4204373851122782640}
-  _achievementButton: {fileID: 0}
-  _rewardsButton: {fileID: 0}
-  _bakeryButton: {fileID: 0}
-  _room: {fileID: 0}
-  _musicButton: {fileID: 1655945473238977435}
-  _soundButton: {fileID: 5541060976016550603}
 --- !u!1 &4204373851122782646
 GameObject:
   m_ObjectHideFlags: 0

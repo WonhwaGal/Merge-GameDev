@@ -46,12 +46,20 @@ namespace Code.Views
         {
             _achievService = ServiceLocator.Container.RequestFor<AchievementService>();
             _lastUnlockedRank = GP_Player.GetInt("unlocked_ranks");
+#if UNITY_EDITOR
+            _dropableRanks = Constants.DropableRanks;
+#else
             _dropableRanks = GP_Variables.GetInt("DropableRanks");
+#endif
+
             if (_lastUnlockedRank == 0)
                 _lastUnlockedRank = _dropableRanks;
 
+#if !UNITY_EDITOR
             if (!_isMobile)
                 SetUpBackground();
+#endif
+
         }
 
         private void SetUpBackground()

@@ -33,7 +33,9 @@ public static class MergeCounter
     private static void CheckMergesInARow()
     {
         _mergesInARow++;
+#if !UNITY_EDITOR
         if (MergesInARow >= MinInARow)
             _achievService.CheckAchievement(AchievType.MergesInARow, _mergesInARow);
+#endif
     }
 }

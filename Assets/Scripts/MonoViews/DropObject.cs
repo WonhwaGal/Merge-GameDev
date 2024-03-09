@@ -1,3 +1,4 @@
+using GamePush;
 using System;
 using UnityEngine;
 
@@ -8,12 +9,22 @@ namespace Code.DropLogic
     {
         [SerializeField, Range(0, 3)]
         private float _knockbackRadius;
+        private float _loseLine;
 
         public float KnockbackRadius => _knockbackRadius;
 
+        private void Start()
+        {
+#if UNITY_EDITOR
+            _loseLine = Constants.LoseThreshold;
+#else
+            _loseLine = GP_Variables.GetFloat("LoseThreshold");
+#endif
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            var overThreshold = transform.position.y > Constants.LoseThreshold;
+            var overThreshold = transform.position.y > _loseLine;
             if (overThreshold && collision.gameObject.GetComponent<DropObject>())
                 GameEventSystem.Send(new GameControlEvent(GameAction.Lose, false));
 

@@ -5,6 +5,7 @@ using GamePush;
 using UnityEngine.Localization.Settings;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Code.Achievements;
+using Unity.Burst.CompilerServices;
 
 public class GameUIModel : IModel, IDisposable
 {
@@ -12,7 +13,7 @@ public class GameUIModel : IModel, IDisposable
     private float _currentScore;
     private int _playerRating;
     private bool _bombActive;
-    private int _rewardActivationSpan;
+    private int _bombActivationSpan;
     private AchievementService _achievementService;
 
     public int MergedRank { get; set; }
@@ -24,7 +25,11 @@ public class GameUIModel : IModel, IDisposable
     public void Init(DropObjectSO dropData)
     {
         _dropData = dropData;
-        _rewardActivationSpan = GP_Variables.GetInt("RewardActivationSpan");
+#if UNITY_EDITOR
+        _bombActivationSpan = Constants.BombActivationSpan;
+#else
+        _bombActivationSpan = GP_Variables.GetInt("RewardActivationSpan");
+#endif
         GP_Leaderboard.OnFetchPlayerRatingSuccess += OnFetchRating;
         GP_Ads.OnAdsClose += OnRewardClose;
         GP_Ads.OnAdsStart += OnRewardStart;
@@ -76,9 +81,9 @@ public class GameUIModel : IModel, IDisposable
 
     public float GetAddPoints(float currentScore)
     {
-        int firstCheck = (int)_currentScore / _rewardActivationSpan;
+        int firstCheck = (int)_currentScore / _bombActivationSpan;
         _currentScore = currentScore + _dropData.FindObjectData(MergedRank - 1).MergeRewardPoint;
-        int secondCheck = (int)_currentScore / _rewardActivationSpan;
+        int secondCheck = (int)_currentScore / _bombActivationSpan;
 
         if (secondCheck > firstCheck && !_bombActive)
             SetBombStatus(true);
@@ -87,8 +92,16 @@ public class GameUIModel : IModel, IDisposable
     }
     #endregion
 
-    #region Rewards
-    public void ShowRewardAd() => GP_Ads.ShowRewarded(Constants.BOMB, OnRewardSuccessful);
+    #region Bomb_Reward
+    public void ShowRewardAd()
+    {
+#if UNITY_EDITOR
+        OnRewardSuccessful(Constants.BOMB);
+#else
+        GP_Ads.ShowRewarded(Constants.BOMB, OnRewardSuccessful);
+#endif
+    }
+
     private void OnRewardSuccessful(string key)
     {
         if (key != Constants.BOMB)

@@ -19,7 +19,11 @@ namespace Code.DropLogic
         {
             _pool = new (dropSO);
             _fxPool = new(fxList);
+#if UNITY_EDITOR
+            _dropableRanks = Constants.DropableRanks;
+#else
             _dropableRanks = GP_Variables.GetInt("DropableRanks");
+#endif
             DropQueueHandler.AssignValues(dropSO.TotalNumber(), _dropableRanks);
             _uiService = ServiceLocator.Container.RequestFor<UIService>();
             _achievService = ServiceLocator.Container.RequestFor<AchievementService>();
@@ -85,6 +89,7 @@ namespace Code.DropLogic
         private DropBase SetUpDropObject(DropBase result, Vector3 position, bool queueMoved, bool shouldDrop)
         {
             _pool.OnSpawned(result, position);
+            result.gameObject.SetActive(true);
             result.OnMerge += MergeDrops;
             GameEventSystem.Send(new CreateDropEvent(queueMoved, result.Rank));
             if (shouldDrop)

@@ -1133,7 +1133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4204373849445295549, guid: 1091d6d02dab4134ba178b33c2b8b26c, type: 3}
       propertyPath: m_Name
-      value: PauseMenuPanel
+      value: PauseMenuPanel Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1811019204176371661, guid: 1091d6d02dab4134ba178b33c2b8b26c, type: 3}
@@ -1148,7 +1148,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4204373849445295549, guid: 1091d6d02dab4134ba178b33c2b8b26c, type: 3}
   m_PrefabInstance: {fileID: 3171899766342907630}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8099902258580090383
+--- !u!114 &4480217205303473421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1611221821202600787}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 795dd18363d654a4f871de0ba9d204fc, type: 3}
+  m_Script: {fileID: 11500000, guid: f6ef107d6279a26419d306673b1c4b21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _retryButton: {fileID: 1611221821940442974}

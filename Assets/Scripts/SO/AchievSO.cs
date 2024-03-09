@@ -28,7 +28,6 @@ public class AchievSO : ScriptableObject
         {
             public string Name;
             public int AchievID;
-            public RewardType RewardType;
             public int RewardIndex;
             public bool HasProgress;
             public float ReferenceValue;

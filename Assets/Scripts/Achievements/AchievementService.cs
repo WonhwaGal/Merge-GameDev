@@ -90,9 +90,12 @@ namespace Code.Achievements
         private void UnlockAchievement(Achievement achiev)
         {
             var id = achiev.AchievID.ToString();
-            GP_Achievements.Unlock(id);
-            achiev.IsUnlocked = true;
-            OnUnlockAchiev?.Invoke(achiev);
+            if(id != null)
+            {
+                GP_Achievements.Unlock(id);
+                achiev.IsUnlocked = true;
+                OnUnlockAchiev?.Invoke(achiev);
+            }
         }
 
         public void Dispose() => OnUnlockAchiev = null;

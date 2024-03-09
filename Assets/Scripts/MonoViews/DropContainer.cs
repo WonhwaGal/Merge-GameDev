@@ -58,7 +58,7 @@ namespace Code.DropLogic
         {
             CurrentDrop.Drop();
             transform.position = _startPosition;
-            CurrentDrop = OnObjectDrop?.Invoke(transform, true);
+            CurrentDrop = OnObjectDrop?.Invoke(transform, true);  // true = random drop object
             CurrentDrop.gameObject.SetActive(false);
             MergeCounter.MergesInARow = 0;
         }

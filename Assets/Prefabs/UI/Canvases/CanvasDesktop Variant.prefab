@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -496.92
       objectReference: {fileID: 0}
+    - target: {fileID: 1721389263809911219, guid: 3df2141d71e47924381851355cabf503, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2320060080482189668, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -199,13 +203,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 62
       objectReference: {fileID: 0}
+    - target: {fileID: 4649848720054434592, guid: 3df2141d71e47924381851355cabf503, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4649848720054435038, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: m_text
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4649848720054435038, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: m_fontSize
-      value: 120
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649848720054435038, guid: 3df2141d71e47924381851355cabf503, type: 3}
+      propertyPath: m_margin.z
+      value: -360.76736
       objectReference: {fileID: 0}
     - target: {fileID: 4649848720054435038, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: m_fontAsset
@@ -217,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4649848720054435038, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: m_fontSizeBase
-      value: 120
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 4649848720054435038, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: m_sharedMaterial
@@ -229,11 +241,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4649848720054435039, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 131
+      value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 4649848720054435039, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859260551396152726, guid: 3df2141d71e47924381851355cabf503, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5906139180281819699, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: _bombButton
@@ -281,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8449217771639653359, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -265
+      value: -253
       objectReference: {fileID: 0}
     - target: {fileID: 8449217771639653359, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: m_AnchoredPosition.y

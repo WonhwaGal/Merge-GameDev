@@ -26,6 +26,9 @@ namespace Code.MVC
 
         private void SetUpBakeryPanel()
         {
+#if UNITY_EDITOR
+            View.BakeryButton.gameObject.SetActive(false);
+#else
             if (GP_Device.IsMobile())
             {
                 View.Room.SetActive(false);
@@ -35,6 +38,7 @@ namespace Code.MVC
             {
                 View.BakeryButton.gameObject.SetActive(false);
             }
+#endif
         }
 
         protected override void OnDispose() => OnRequestRewards = null;
