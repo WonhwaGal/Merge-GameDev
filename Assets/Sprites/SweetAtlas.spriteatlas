@@ -84,6 +84,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b55e03b4e9927dd489d13f37c984127f, type: 3}
   - {fileID: 21300000, guid: 9c3a8f059b64fcf4bbfbd1c95850b75b, type: 3}
   - {fileID: 21300000, guid: dacfbe254431f4f4784021dd1e367fd9, type: 3}
+  - {fileID: 21300000, guid: 47aa776522e80b0438d23f93fbeda802, type: 3}
   - {fileID: 21300000, guid: ff948f95631fd154eb3c38306d1f0483, type: 3}
   - {fileID: 21300000, guid: a63fd1565a911024e90aec4884c3c1f3, type: 3}
   - {fileID: 21300000, guid: 11b5a4a64f37313429469349a4e37e5c, type: 3}
@@ -116,6 +117,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 329b815cc33eadb4e90d84f8aa783460, type: 3}
   - {fileID: 21300000, guid: caf7cf5c3fc09a7488ab3d1973c07cf9, type: 3}
   - {fileID: 21300000, guid: 0222c46cd3678294780b8945601ce6d4, type: 3}
+  - {fileID: 21300000, guid: d4978b9c3368a504fa3dfbabf6b63620, type: 3}
   - {fileID: 21300000, guid: 23d2434d80883374db5d2c3ffbb36f4b, type: 3}
   - {fileID: 21300000, guid: d382f96d26cbe0a4a99ac54d87ed00ed, type: 3}
   - {fileID: 21300000, guid: 267e5c6d289cad14783852f9e12a82dc, type: 3}
@@ -168,6 +170,7 @@ SpriteAtlas:
   - rewardBox
   - Board
   - CherryPie_face
+  - AdButton
   - feeder
   - Croissant_mimic
   - Button
@@ -200,6 +203,7 @@ SpriteAtlas:
   - Static_9
   - play
   - GirlyCookie_mimic
+  - lamp_leg
   - rewardBoxMask
   - lamp_off2
   - JapaneseBun_new_face

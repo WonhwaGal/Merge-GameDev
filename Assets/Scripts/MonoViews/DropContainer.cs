@@ -28,11 +28,11 @@ namespace Code.DropLogic
 
         private void OnApplicationFocus(bool focus)
         {
-            if (focus || Time.timeScale == 0)
-                return;
+            if (!focus && Time.timeScale != 0)
+                if (Int32.TryParse(_scoreText.text, out int finalScore))
+                    GameEventSystem.Send(new SaveEvent(finalScore, onlyScore: false));
 
-            if(Int32.TryParse(_scoreText.text, out int finalScore))
-                GameEventSystem.Send(new SaveEvent(finalScore, onlyScore: false));
+            GameEventSystem.Send(new SoundEvent(SoundType.BackGroundMusic, focus));
         }
 
         private void OnMouseDrag()
@@ -72,7 +72,6 @@ namespace Code.DropLogic
                     delay += Time.deltaTime;
                 yield return null;
             }
-
             CurrentDrop.gameObject.SetActive(true);
             _isDragging = false;
         }

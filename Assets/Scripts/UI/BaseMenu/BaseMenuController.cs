@@ -47,8 +47,8 @@ namespace Code.MVC
         protected override void OnViewAdded()
         {
             View.RetryButton.onClick.AddListener(Model.PressRetry);
-            View.MusicButton.SetBool(Model.GetVolume(SoundType.TotalMusic));
-            View.SoundButton.SetBool(Model.GetVolume(SoundType.TotalSound));
+            View.MusicButton.SetBool(Model.GetVolume(SoundType.VolumeMusic));
+            View.SoundButton.SetBool(Model.GetVolume(SoundType.VolumeSound));
             Model.OnLanguageChanged += View.SetTexts;
             InitComponents();
         }

@@ -18,9 +18,9 @@ namespace Code.DropLogic
             }
             else
             {
-                GameEventSystem.Send(new SoundEvent(SoundType.Poof, true));
                 GameEventSystem.Send(new ManageDropEvent(this, returnToPool: true, withEffects: true));
             }
+            GameEventSystem.Send(new SoundEvent(SoundType.Poof, true));
         }
 
         protected override void OnDrop()

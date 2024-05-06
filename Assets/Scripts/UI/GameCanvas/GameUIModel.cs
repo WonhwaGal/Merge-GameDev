@@ -106,14 +106,15 @@ public class GameUIModel : IModel, IDisposable
     {
         if (key != Constants.BOMB)
             return;
+        Debug.LogWarning("GameUIModel: sending event for a bomb drop");
         SetBombStatus(false);
         GameEventSystem.Send(new RewardEvent(Constants.BombRank));
     }
 
     private void OnRewardStart() 
-        => GameEventSystem.Send(new SoundEvent(SoundType.BackGround, false));
+        => GameEventSystem.Send(new SoundEvent(SoundType.BackGroundMusic, false));
     private void OnRewardClose(bool arg1)
-        => GameEventSystem.Send(new SoundEvent(SoundType.BackGround, true));
+        => GameEventSystem.Send(new SoundEvent(SoundType.BackGroundMusic, true));
 
     private void SetBombStatus(bool toActivate)
     {

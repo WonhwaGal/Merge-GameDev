@@ -1,9 +1,9 @@
 
 public enum SoundType
 {
-    TotalMusic = 0,
-    TotalSound = 1,
-    BackGround = 2,
+    VolumeMusic = 0,
+    VolumeSound = 1,
+    BackGroundMusic = 2,
     Poof = 3,
     Drop = 4
 }

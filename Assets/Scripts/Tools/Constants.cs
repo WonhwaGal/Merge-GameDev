@@ -12,6 +12,9 @@ public sealed class Constants
     public const float LoseThreshold = 10.0f;
     public const int BombActivationSpan = 300;
 
+    public const float LoadAdWaitTime = 15;
+    public const float DeltaTimeStep = 0.04f;
+
     //DROP SETTINGS
     public const float KnockbackMulti = 3;
     public const int MinMimicSpan = 3;
@@ -26,5 +29,6 @@ public sealed class Constants
     public const string Language = "chosen_lang";
     public const string BOMB = "BOMB";
     public const string REWARD = "REWARD";
+    public const float HIGHLIGHT_BOMB_TIME = 5;
     public const int BombRank = -1;
 }

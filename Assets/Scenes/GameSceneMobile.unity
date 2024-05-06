@@ -942,5 +942,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasMobile
       objectReference: {fileID: 0}
+    - target: {fileID: 5387035807584703447, guid: 31063016bb37f49418250b792207af01, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387035807584703447, guid: 31063016bb37f49418250b792207af01, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387035807584703447, guid: 31063016bb37f49418250b792207af01, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387035807584703447, guid: 31063016bb37f49418250b792207af01, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387035807584703447, guid: 31063016bb37f49418250b792207af01, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -114
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387035807584703447, guid: 31063016bb37f49418250b792207af01, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -252
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31063016bb37f49418250b792207af01, type: 3}

@@ -606,6 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backButton: {fileID: 21119054402009328}
+  _backButtonText: {fileID: 4866038004475233736}
   _rewardButtons:
   - {fileID: 5139368651854653298}
   - {fileID: 7155503141777560379}

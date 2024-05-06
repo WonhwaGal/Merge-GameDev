@@ -73,7 +73,11 @@ namespace Code.MVC
                 ChangeRewardState();
         }
 
-        private void ShowRewardAd() => GP_Ads.ShowRewarded(Constants.REWARD, OnRewardSuccessful);
+        private void ShowRewardAd()
+        {
+            GP_Ads.ShowRewarded(Constants.REWARD, OnRewardSuccessful);
+        }
+
         private void OnRewardSuccessful(string rewardName) => ChangeRewardState();
 
         private void ChangeRewardState()

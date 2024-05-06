@@ -8,6 +8,8 @@ using Code.MVC;
 using Code.DropLogic;
 using Code.Achievements;
 using GamePush;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using System;
 
 public class EntryPoint : MonoBehaviour
 {
@@ -28,10 +30,13 @@ public class EntryPoint : MonoBehaviour
         localeInit.Completed += _ => Init();
         yield return new WaitWhile(() => _saveService == null);
 
+        //localeInit.Completed -= InitFunction;
         var savedData = GP_Player.GetString(Constants.DropList);
         yield return new WaitWhile(() => string.IsNullOrEmpty(savedData));
         _startCanvas.ContinueButton.interactable = _saveService.LoadProgress(savedData);
     }
+
+    private void InitFunction(AsyncOperationHandle<LocalizationSettings> handle) => Init();
 
     private void Init()
     {

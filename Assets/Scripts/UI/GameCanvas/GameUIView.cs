@@ -4,18 +4,24 @@ using GamePush;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 namespace Code.MVC
 {
     public class GameUIView : MonoBehaviour, IView
     {
         [SerializeField] private Image _nextImage;
-        [SerializeField] private Button _bombButton;
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private GameObject _ratingPanel;
         [SerializeField] private TextMeshProUGUI _ratingText;
         [SerializeField] private Button _leaderBoardButton;
         [SerializeField] private TextMeshProUGUI _nextText;
+
+        [Header("Bomb settings")]
+        [SerializeField] private Button _bombButton;
+        [SerializeField] private Image _bombAdImage;
+        [SerializeField] private Color _inactiveColor;
+
         private float _scoreValue;
         private float _highlightTime;
 
@@ -34,8 +40,23 @@ namespace Code.MVC
 
         public event Action OnDestroyView;
 
-        private void OnEnable() => _bombButton.interactable = false;
-        private void Start() => _highlightTime = GP_Variables.GetFloat("HighlightTime");
+        private void OnEnable()
+        {
+            _bombButton.interactable = false;
+            _bombAdImage.color = SetAdImage(_bombButton.interactable);
+            _bombButton.onClick.AddListener(Animate);
+        }
+
+        private void Start()
+        {
+#if UNITY_EDITOR
+            _highlightTime = Constants.HIGHLIGHT_BOMB_TIME;
+#else
+            _highlightTime = GP_Variables.GetFloat("HighlightTime");
+#endif
+        }
+
+        private void Animate() => StartCoroutine(StartLoading());
 
         public void SetRating(int rating)
         {
@@ -49,14 +70,17 @@ namespace Code.MVC
         public void ActivateRewardButton(bool active)
         {
             BombButton.interactable = active;
+            _bombAdImage.color = SetAdImage(_bombButton.interactable);
             if (active)
                 StartCoroutine(ShowRewardAvailable());
         }
 
+        private Color SetAdImage(bool active) => active ? Color.white : _inactiveColor;
+
         private IEnumerator ShowRewardAvailable()
         {
             float count = 0;
-            while (count < _highlightTime)
+            while (count < _highlightTime && Time.timeScale > 0 && BombButton.interactable)
             {
                 if (Time.deltaTime != 0)
                 {
@@ -66,6 +90,27 @@ namespace Code.MVC
                 }
             }
             _bombButton.transform.localScale = Vector3.one;
+        }
+
+        private IEnumerator StartLoading()
+        {
+            StopCoroutine(ShowRewardAvailable());
+            //float count = 0;
+            _bombButton.interactable = false;
+            GameEventSystem.Send(new LoadADEvent(true));
+            yield return new WaitForSecondsRealtime(Constants.LoadAdWaitTime);
+            //while (count < Constants.BeatAnimTime)
+            //{
+            //    if(_bombAdImage.color != Color.white)
+            //        _bombAdImage.color = SetAdImage(true);
+
+            //    count += Constants.DeltaTimeStep;
+            //    _bombAdImage.transform.localScale = Vector3.one * (Mathf.PingPong(count, 0.5f) + 1);
+            //    yield return new WaitForSecondsRealtime(Constants.DeltaTimeStep);
+            //}
+            //_bombAdImage.transform.localScale = Vector3.one;
+            _bombAdImage.color = SetAdImage(false);
+            GameEventSystem.Send(new LoadADEvent(false));
         }
 
         private void OnDestroy()

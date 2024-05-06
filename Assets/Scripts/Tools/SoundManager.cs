@@ -24,7 +24,7 @@ namespace Code.Sounds
             var soundView = GameObject.Instantiate(_soundSO.SoundObject);
             _musicSource = soundView.MusicSource;
             _soundSource = soundView.SoundSource;
-            _musicSource.clip = _soundSO.FindClip(SoundType.BackGround);
+            _musicSource.clip = _soundSO.FindClip(SoundType.BackGroundMusic);
             _totalMusicOn = GP_Player.GetBool("music_on");
             _totalSoundOn = GP_Player.GetBool("sound_on");
             HandleMusic(_totalMusicOn);
@@ -32,9 +32,9 @@ namespace Code.Sounds
 
         private void PlaySound(SoundEvent @event)
         {
-            if (@event.SoundType == SoundType.TotalMusic || @event.SoundType == SoundType.TotalSound)
+            if (@event.SoundType == SoundType.VolumeMusic || @event.SoundType == SoundType.VolumeSound)
                 HandleVolume(@event.SoundType, @event.TurnOn);
-            else if (@event.SoundType == SoundType.BackGround)
+            else if (@event.SoundType == SoundType.BackGroundMusic)
                 HandleMusic(@event.TurnOn);
             else
                 HandleSounds(@event);
@@ -42,7 +42,7 @@ namespace Code.Sounds
 
         private void HandleVolume(SoundType type, bool on)
         {
-            if (type == SoundType.TotalMusic)
+            if (type == SoundType.VolumeMusic)
             {
                 _totalMusicOn = on;
                 GP_Player.Set("music_on", on);
