@@ -95,20 +95,11 @@ namespace Code.MVC
         private IEnumerator StartLoading()
         {
             StopCoroutine(ShowRewardAvailable());
-            //float count = 0;
             _bombButton.interactable = false;
             GameEventSystem.Send(new LoadADEvent(true));
-            yield return new WaitForSecondsRealtime(Constants.LoadAdWaitTime);
-            //while (count < Constants.BeatAnimTime)
-            //{
-            //    if(_bombAdImage.color != Color.white)
-            //        _bombAdImage.color = SetAdImage(true);
 
-            //    count += Constants.DeltaTimeStep;
-            //    _bombAdImage.transform.localScale = Vector3.one * (Mathf.PingPong(count, 0.5f) + 1);
-            //    yield return new WaitForSecondsRealtime(Constants.DeltaTimeStep);
-            //}
-            //_bombAdImage.transform.localScale = Vector3.one;
+            yield return new WaitForSecondsRealtime(Constants.LoadAdWaitTime);
+
             _bombAdImage.color = SetAdImage(false);
             GameEventSystem.Send(new LoadADEvent(false));
         }

@@ -77,16 +77,10 @@ namespace Code.MVC
 
         private IEnumerator StartLoading()
         {
-            //float count = 0;
             GameEventSystem.Send(new LoadADEvent(true));
+
             yield return new WaitForSecondsRealtime(Constants.LoadAdWaitTime);
-            //while (count < Constants.BeatAnimTime)
-            //{
-            //    count += Constants.DeltaTimeStep;
-            //    _adImage.transform.localScale = Vector3.one * (Mathf.PingPong(count, 0.5f) + 1);
-            //    yield return new WaitForSecondsRealtime(Constants.DeltaTimeStep);
-            //}
-            //_adImage.transform.localScale = Vector3.one;
+
             GameEventSystem.Send(new LoadADEvent(false));
         }
 
