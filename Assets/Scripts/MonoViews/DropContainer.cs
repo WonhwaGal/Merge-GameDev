@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using System.Runtime.InteropServices;
 
 namespace Code.DropLogic
 {
@@ -11,9 +12,13 @@ namespace Code.DropLogic
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private float _leftBorder;
         [SerializeField] private float _rightBorder;
+
+        [SerializeField] private DropBase _replaceDrop;
+
         private Camera _cam;
         private Vector3 _startPosition;
         private bool _isDragging;
+        private bool _isBlocked;
 
         public DropBase CurrentDrop { get; set; }
 
@@ -24,6 +29,7 @@ namespace Code.DropLogic
             _cam = Camera.main;
             _startPosition = transform.position;
             GameEventSystem.Subscribe<RewardEvent>(CreateBomb);
+            GameEventSystem.Subscribe<LoadADEvent>(ReactToLoadingAd);
         }
 
         private void OnApplicationFocus(bool focus)
@@ -37,7 +43,7 @@ namespace Code.DropLogic
 
         private void OnMouseDrag()
         {
-            if (Time.timeScale == 0)
+            if (Time.timeScale == 0 || _isBlocked)
                 return;
             _isDragging = true;
             var currentMousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
@@ -47,7 +53,7 @@ namespace Code.DropLogic
 
         private void OnMouseUp()
         {
-            if (!_isDragging || !CurrentDrop.gameObject.activeSelf)
+            if (!_isDragging || !CurrentDrop.gameObject.activeSelf || _isBlocked)
                 return;
             GameEventSystem.Send(new SoundEvent(SoundType.Drop, true));
             PrepairNext();
@@ -58,8 +64,12 @@ namespace Code.DropLogic
         {
             CurrentDrop.Drop();
             transform.position = _startPosition;
-            CurrentDrop = OnObjectDrop?.Invoke(transform, true);  // true = random drop object
+            var drop = OnObjectDrop?.Invoke(transform, true);  // true = random drop object
+            if (_replaceDrop == null && drop != null)
+                _replaceDrop = drop;
+            CurrentDrop = drop ?? _replaceDrop;
             CurrentDrop.gameObject.SetActive(false);
+
             MergeCounter.MergesInARow = 0;
         }
 
@@ -82,10 +92,13 @@ namespace Code.DropLogic
             CurrentDrop = OnObjectDrop?.Invoke(transform, false);
         }
 
+        private void ReactToLoadingAd(LoadADEvent @event) => _isBlocked = @event.StartLoading;
+
         private void OnDestroy()
         {
             OnObjectDrop = null;
             GameEventSystem.UnSubscribe<RewardEvent>(CreateBomb);
+            GameEventSystem.UnSubscribe<LoadADEvent>(ReactToLoadingAd);
         }
     }
 }

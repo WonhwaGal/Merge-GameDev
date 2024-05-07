@@ -13,7 +13,7 @@ public sealed class Constants
     public const int BombActivationSpan = 300;
 
     public const float LoadAdWaitTime = 15;
-    public const float DeltaTimeStep = 0.04f;
+    public const float DeltaTimeStep = 0.03f;
 
     //DROP SETTINGS
     public const float KnockbackMulti = 3;

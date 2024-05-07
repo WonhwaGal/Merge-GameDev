@@ -31,8 +31,8 @@ public class GameUIModel : IModel, IDisposable
         _bombActivationSpan = GP_Variables.GetInt("RewardActivationSpan");
 #endif
         GP_Leaderboard.OnFetchPlayerRatingSuccess += OnFetchRating;
-        GP_Ads.OnAdsClose += OnRewardClose;
-        GP_Ads.OnAdsStart += OnRewardStart;
+        //GP_Ads.OnAdsClose += OnRewardClose;
+        //GP_Ads.OnAdsStart += OnRewardStart;
         GameEventSystem.Subscribe<SaveEvent>(SaveBombStatus);
         _achievementService = ServiceLocator.Container.RequestFor<AchievementService>();
         RenewRating();
@@ -98,7 +98,7 @@ public class GameUIModel : IModel, IDisposable
 #if UNITY_EDITOR
         OnRewardSuccessful(Constants.BOMB);
 #else
-        GP_Ads.ShowRewarded(Constants.BOMB, OnRewardSuccessful);
+        GP_Ads.ShowRewarded(Constants.BOMB, OnRewardSuccessful, OnRewardStart, OnRewardClose);
 #endif
     }
 
@@ -111,10 +111,22 @@ public class GameUIModel : IModel, IDisposable
         GameEventSystem.Send(new RewardEvent(Constants.BombRank));
     }
 
-    private void OnRewardStart() 
-        => GameEventSystem.Send(new SoundEvent(SoundType.BackGroundMusic, false));
-    private void OnRewardClose(bool arg1)
-        => GameEventSystem.Send(new SoundEvent(SoundType.BackGroundMusic, true));
+    private void OnRewardStart()
+    {
+        GameEventSystem.Send(new LoadADEvent(true));
+        GameEventSystem.Send(new SoundEvent(SoundType.BackGroundMusic, false));
+    }
+
+    private void OnRewardClose(bool isSuccess)
+    {
+        GameEventSystem.Send(new LoadADEvent(false));
+        GameEventSystem.Send(new SoundEvent(SoundType.BackGroundMusic, true));
+        if (!isSuccess)
+        {
+            Debug.LogWarning("GameUIModel: bomb reward not received - ad not watched");
+            SetBombStatus(false);
+        }
+    }
 
     private void SetBombStatus(bool toActivate)
     {
@@ -135,8 +147,8 @@ public class GameUIModel : IModel, IDisposable
     public void Dispose()
     {
         GameEventSystem.UnSubscribe<SaveEvent>(SaveBombStatus);
-        GP_Ads.OnAdsClose -= OnRewardClose;
-        GP_Ads.OnAdsStart -= OnRewardStart;
+        //GP_Ads.OnAdsClose -= OnRewardClose;
+        //GP_Ads.OnAdsStart -= OnRewardStart;
         OnLanguageChanged = null;
         OnActivateReward = null;
         OnGetRating = null;

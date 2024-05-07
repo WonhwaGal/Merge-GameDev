@@ -75,13 +75,20 @@ namespace Code.MVC
 
         private void ShowRewardAd()
         {
-            GP_Ads.ShowRewarded(Constants.REWARD, OnRewardSuccessful);
+            GP_Ads.ShowRewarded(Constants.REWARD, OnRewardSuccessful, OnRewardStart, OnRewardClose);
         }
 
         private void OnRewardSuccessful(string rewardName) => ChangeRewardState();
+        private void OnRewardStart() => GameEventSystem.Send(new LoadADEvent(true));
+        private void OnRewardClose(bool isSuccess)
+        {
+            GameEventSystem.Send(new LoadADEvent(false));
+            OnUpdateReward?.Invoke(_currentIndex, !_requestedState);
+        }
 
         private void ChangeRewardState()
         {
+            //GameEventSystem.Send(new LoadADEvent(false));
             if (_requestedState)
                 _actives.Actives.Add(_currentIndex);
             else

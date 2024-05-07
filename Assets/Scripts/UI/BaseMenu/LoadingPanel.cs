@@ -16,7 +16,7 @@ public class LoadingPanel : MonoBehaviour
         _loadingImage.fillAmount = 0;
         while (gameObject.activeInHierarchy)
         {
-            _loadingImage.fillAmount += Constants.DeltaTimeStep / 2;
+            _loadingImage.fillAmount += Constants.DeltaTimeStep / 3;
             if(_loadingImage.fillAmount >= 1)
                 _loadingImage.fillAmount = 0;
             yield return new WaitForSecondsRealtime(Constants.DeltaTimeStep);

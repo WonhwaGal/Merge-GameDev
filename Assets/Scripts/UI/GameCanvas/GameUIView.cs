@@ -96,7 +96,7 @@ namespace Code.MVC
         {
             StopCoroutine(ShowRewardAvailable());
             _bombButton.interactable = false;
-            GameEventSystem.Send(new LoadADEvent(true));
+            //GameEventSystem.Send(new LoadADEvent(true));
 
             yield return new WaitForSecondsRealtime(Constants.LoadAdWaitTime);
 
