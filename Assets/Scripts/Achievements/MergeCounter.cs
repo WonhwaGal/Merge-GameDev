@@ -14,8 +14,7 @@ public static class MergeCounter
     {
         if (_lastMergingRank == mergingRank)
         {
-            if (_achievService == null)
-                _achievService = ServiceLocator.Container.RequestFor<AchievementService>();
+            _achievService ??= ServiceLocator.Container.RequestFor<AchievementService>();
 
             _achievService.CheckAchievement(AchievType.DoubleMerge, 1);
         }
@@ -27,13 +26,17 @@ public static class MergeCounter
     public static void BombUse()
     {
         _bombUse++;
+        UnityEngine.Debug.LogWarning($"TestMerge: _achievService is null {_achievService == null}");
+        _achievService ??= ServiceLocator.Container.RequestFor<AchievementService>();
         _achievService.CheckAchievement(AchievType.BombUse, _bombUse);
     }
 
     private static void CheckMergesInARow()
     {
         _mergesInARow++;
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
+        //do nothing
+#else
         if (MergesInARow >= MinInARow)
             _achievService.CheckAchievement(AchievType.MergesInARow, _mergesInARow);
 #endif

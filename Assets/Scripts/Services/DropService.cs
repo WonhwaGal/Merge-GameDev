@@ -28,6 +28,7 @@ namespace Code.DropLogic
             _uiService = ServiceLocator.Container.RequestFor<UIService>();
             _achievService = ServiceLocator.Container.RequestFor<AchievementService>();
             GameEventSystem.Subscribe<ManageDropEvent>(EndSession);
+            _fxPool.Prespawn(PrefabType.PoofEffect, 3);
         }
 
         public void RecreateProgress(ProgressData data)

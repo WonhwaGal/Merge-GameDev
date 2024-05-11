@@ -31,8 +31,6 @@ public class GameUIModel : IModel, IDisposable
         _bombActivationSpan = GP_Variables.GetInt("RewardActivationSpan");
 #endif
         GP_Leaderboard.OnFetchPlayerRatingSuccess += OnFetchRating;
-        //GP_Ads.OnAdsClose += OnRewardClose;
-        //GP_Ads.OnAdsStart += OnRewardStart;
         GameEventSystem.Subscribe<SaveEvent>(SaveBombStatus);
         _achievementService = ServiceLocator.Container.RequestFor<AchievementService>();
         RenewRating();
@@ -106,7 +104,6 @@ public class GameUIModel : IModel, IDisposable
     {
         if (key != Constants.BOMB)
             return;
-        Debug.LogWarning("GameUIModel: sending event for a bomb drop");
         SetBombStatus(false);
         GameEventSystem.Send(new RewardEvent(Constants.BombRank));
     }
@@ -147,8 +144,6 @@ public class GameUIModel : IModel, IDisposable
     public void Dispose()
     {
         GameEventSystem.UnSubscribe<SaveEvent>(SaveBombStatus);
-        //GP_Ads.OnAdsClose -= OnRewardClose;
-        //GP_Ads.OnAdsStart -= OnRewardStart;
         OnLanguageChanged = null;
         OnActivateReward = null;
         OnGetRating = null;

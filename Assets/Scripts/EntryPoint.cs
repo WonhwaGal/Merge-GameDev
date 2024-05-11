@@ -26,6 +26,9 @@ public class EntryPoint : MonoBehaviour
         _startCanvas.StartNewButton.onClick.AddListener(() => LoadNewScene(withProgress: false));
         _startCanvas.ContinueButton.onClick.AddListener(() => LoadNewScene(withProgress: true));
 
+        _saveService = ServiceLocator.Container.RegisterAndAssign(new SaveService());
+        _achievementService = ServiceLocator.Container.RegisterAndAssign(new AchievementService(_achievSO));
+
         var localeInit = LocalizationSettings.InitializationOperation;
         localeInit.Completed += _ => Init();
         yield return new WaitWhile(() => _saveService == null);
@@ -40,9 +43,6 @@ public class EntryPoint : MonoBehaviour
 
     private void Init()
     {
-        _saveService = ServiceLocator.Container.RegisterAndAssign(new SaveService());
-        _achievementService = ServiceLocator.Container.RegisterAndAssign(new AchievementService(_achievSO));
-
         _languageHandler = new LanguageHandler();
         _languageHandler.OnLanguageChanged += _startCanvas.SetTexts;
         _languageHandler.UpdateLangInfo();

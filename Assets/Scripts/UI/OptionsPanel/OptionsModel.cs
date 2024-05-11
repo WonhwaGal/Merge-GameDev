@@ -79,11 +79,17 @@ namespace Code.MVC
         }
 
         private void OnRewardSuccessful(string rewardName) => ChangeRewardState();
-        private void OnRewardStart() => GameEventSystem.Send(new LoadADEvent(true));
+        private void OnRewardStart()
+        {
+            GameEventSystem.Send(new LoadADEvent(true));
+            GameEventSystem.Send(new SoundEvent(SoundType.BackGroundMusic, false));
+        }
+
         private void OnRewardClose(bool isSuccess)
         {
             GameEventSystem.Send(new LoadADEvent(false));
             OnUpdateReward?.Invoke(_currentIndex, !_requestedState);
+            GameEventSystem.Send(new SoundEvent(SoundType.BackGroundMusic, true));
         }
 
         private void ChangeRewardState()

@@ -112,6 +112,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: de5f697b8df0b544ebaed5a7e544d8ba, type: 3}
   - {fileID: 21300000, guid: f376f08bbd256db459ea56d07a749c72, type: 3}
   - {fileID: 21300000, guid: cb85d69b5109c46458e3b23fd980b24f, type: 3}
+  - {fileID: 21300000, guid: 381de7ab9cbddac42a6563decd4b8f31, type: 3}
   - {fileID: 21300000, guid: 804e81db505d6cd4394030e2363b5147, type: 3}
   - {fileID: 21300000, guid: e2798c4c966399b48bdedf8329f987db, type: 3}
   - {fileID: 21300000, guid: 329b815cc33eadb4e90d84f8aa783460, type: 3}
@@ -198,6 +199,7 @@ SpriteAtlas:
   - Bezeshka
   - rewardLock
   - panel_faded
+  - containerBack
   - lamp_on2
   - Static_11
   - Static_9

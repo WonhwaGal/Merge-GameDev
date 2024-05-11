@@ -77,8 +77,6 @@ namespace Code.MVC
 
         private IEnumerator StartLoading()
         {
-            //GameEventSystem.Send(new LoadADEvent(true));
-
             yield return new WaitForSecondsRealtime(Constants.LoadAdWaitTime);
 
             GameEventSystem.Send(new LoadADEvent(false));

@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using System.Runtime.InteropServices;
+using GamePush;
 
 namespace Code.DropLogic
 {
@@ -12,8 +13,6 @@ namespace Code.DropLogic
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private float _leftBorder;
         [SerializeField] private float _rightBorder;
-
-        [SerializeField] private DropBase _replaceDrop;
 
         private Camera _cam;
         private Vector3 _startPosition;
@@ -37,6 +36,9 @@ namespace Code.DropLogic
             if (!focus && Time.timeScale != 0)
                 if (Int32.TryParse(_scoreText.text, out int finalScore))
                     GameEventSystem.Send(new SaveEvent(finalScore, onlyScore: false));
+
+            if (_isBlocked)
+                return;
 
             GameEventSystem.Send(new SoundEvent(SoundType.BackGroundMusic, focus));
         }
@@ -64,12 +66,12 @@ namespace Code.DropLogic
         {
             CurrentDrop.Drop();
             transform.position = _startPosition;
-            var drop = OnObjectDrop?.Invoke(transform, true);  // true = random drop object
-            if (_replaceDrop == null && drop != null)
-                _replaceDrop = drop;
-            CurrentDrop = drop ?? _replaceDrop;
+            Debug.LogWarning("TestMerge: changed container pos");
+            CurrentDrop = OnObjectDrop?.Invoke(transform, true);  // true = random drop object
+            Debug.LogWarning("TestMerge: assigned new drop");
+            if (CurrentDrop == null)
+                Debug.LogWarning("TestMerge: Current drop is null");
             CurrentDrop.gameObject.SetActive(false);
-
             MergeCounter.MergesInARow = 0;
         }
 
@@ -90,6 +92,7 @@ namespace Code.DropLogic
         {
             GameEventSystem.Send(new ManageDropEvent(CurrentDrop, true, withEffects: false));
             CurrentDrop = OnObjectDrop?.Invoke(transform, false);
+            Debug.LogWarning("TestMerge: set up the bomb");
         }
 
         private void ReactToLoadingAd(LoadADEvent @event) => _isBlocked = @event.StartLoading;

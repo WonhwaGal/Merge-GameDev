@@ -31,6 +31,7 @@ namespace Code.Achievements
 
                 CheckAchievement(achiev, type == AchievType.MergeByRank, referenceValue);
             }
+            UnityEngine.Debug.LogWarning($"TestMerge: _achievService done");
         }
 
         public void SetInitialProgress(bool toZero)

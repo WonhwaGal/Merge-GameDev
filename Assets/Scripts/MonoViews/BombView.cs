@@ -26,6 +26,7 @@ namespace Code.DropLogic
         protected override void OnDrop()
         {
             base.OnDrop();
+            Debug.LogWarning("TestMerge: Bomb dropped");
             MergeCounter.BombUse();
         }
     }

@@ -33,6 +33,7 @@ namespace Code.Pools
                 _pools[key].ReturnToRoot(prefab);
         }
 
+        public virtual void Prespawn(K type, int count) { }
         protected abstract T GetPrefab(K type);
         public virtual void OnSpawned(T result, Vector3 targetPos) { }
 

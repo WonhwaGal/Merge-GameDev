@@ -16,5 +16,15 @@ namespace Code.Pools
             result.transform.position = targetPos;
             result.OnDisabled += Despawn;
         }
+
+        public override void Prespawn(PrefabType type, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                var result = Spawn(type);
+                result.transform.position = Vector3.zero;
+                result.gameObject.SetActive(false);
+            }
+        }
     }
 }
