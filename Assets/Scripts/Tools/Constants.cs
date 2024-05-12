@@ -8,7 +8,7 @@ public sealed class Constants
     public const int ShowableRating = 99;
     public const int DefaultLang = 5;
 
-    public const int DropableRanks = 6;
+    public const int DropableRanks = 11;
     public const float LoseThreshold = 10.0f;
     public const int BombActivationSpan = 300;
 

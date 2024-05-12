@@ -6,9 +6,9 @@ public static class DropQueueHandler
     public static int MaxUsableRank { get; set; }
     public static int NextDrop { get; private set; }
 
-    public static void AssignValues(int totalRanks, int usableRanks)
+    public static void AssignValues(int totalDrops, int usableRanks)
     {
-        MaxRank = totalRanks;
+        MaxRank = totalDrops - 1;
         MaxUsableRank = usableRanks;
         NextDrop = Random.Range(1, MaxUsableRank);
     }
