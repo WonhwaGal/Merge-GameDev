@@ -46,7 +46,11 @@ public class GameUIModel : IModel, IDisposable
                 if (handle.Status == AsyncOperationStatus.Succeeded)
                 {
                     var table = handle.Result;
-                    OnLanguageChanged?.Invoke(new string[1] { table.GetEntry("nextUI")?.GetLocalizedString() });
+                    OnLanguageChanged?.Invoke(new string[2] 
+                    { 
+                        table.GetEntry("nextUI")?.GetLocalizedString(),
+                        table.GetEntry("keyText")?.GetLocalizedString()
+                    });
                 }
             };
 
@@ -79,6 +83,7 @@ public class GameUIModel : IModel, IDisposable
 
     public float GetAddPoints(float currentScore)
     {
+        Debug.Log($"TestMerge: merged rank {MergedRank}, score add {_dropData.FindObjectData(MergedRank - 1).MergeRewardPoint}");
         int firstCheck = (int)_currentScore / _bombActivationSpan;
         _currentScore = currentScore + _dropData.FindObjectData(MergedRank - 1).MergeRewardPoint;
         int secondCheck = (int)_currentScore / _bombActivationSpan;

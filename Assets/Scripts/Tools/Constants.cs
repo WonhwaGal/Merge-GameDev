@@ -15,6 +15,11 @@ public sealed class Constants
     public const float LoadAdWaitTime = 15;
     public const float DeltaTimeStep = 0.03f;
 
+    //KEY SETTINGS
+    public const float ShowKeyScale = 3.5f;
+    public const float KeyMultiplier = 1.04f;
+    public const int KeyRank = 100;
+
     //DROP SETTINGS
     public const float KnockbackMulti = 3;
     public const int MinMimicSpan = 3;

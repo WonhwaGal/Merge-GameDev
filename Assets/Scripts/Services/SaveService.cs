@@ -33,6 +33,8 @@ namespace Code.SaveLoad
                 _handler.FillData(@event.Drop);
         }
 
+        public void AddKey(Transform transform) => _handler.AddKey(transform);
+
         public void SaveData(float currentScore, bool onlyScore)
         {
             GP_Player.SetScore(GetBestScore(currentScore));

@@ -1,5 +1,6 @@
 ﻿using Code.DropLogic;
 using System.Collections.Generic;
+using UnityEngine;
 using static Code.SaveLoad.ProgressData;
 
 namespace Code.SaveLoad
@@ -19,6 +20,9 @@ namespace Code.SaveLoad
             }
             _drops.Add(new DropSave(drop.Rank, drop.transform.position));
         }
+
+        public void AddKey(Transform transform) => 
+            _drops.Add(new DropSave(Constants.KeyRank, transform.position));
 
         public void Clear() => _drops.Clear();
     }

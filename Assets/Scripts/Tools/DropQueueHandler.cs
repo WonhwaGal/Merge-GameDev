@@ -8,7 +8,7 @@ public static class DropQueueHandler
 
     public static void AssignValues(int totalDrops, int usableRanks)
     {
-        MaxRank = totalDrops - 1;
+        MaxRank = totalDrops;
         MaxUsableRank = usableRanks;
         NextDrop = Random.Range(1, MaxUsableRank);
     }

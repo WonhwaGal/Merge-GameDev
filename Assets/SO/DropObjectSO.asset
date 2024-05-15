@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51670f33fc7c9c4aa16e25cf1a4e94f, type: 3}
   m_Name: DropObjectSO
   m_EditorClassIdentifier: 
+  _maxRank: 11
+  _keyPrefab: {fileID: 5897618954739554854, guid: 1788cfc107fed7d41b76f24ce3375916, type: 3}
   _dropsData:
   - DropSprite: {fileID: 21300000, guid: aac2ea50c4a190d4e829d071aced9a3b, type: 3}
     MergeRewardPoint: 2
@@ -28,7 +30,7 @@ MonoBehaviour:
   - DropSprite: {fileID: 21300000, guid: 0036c7c638a7a8c4a8d1a3477164f29c, type: 3}
     MergeRewardPoint: 20
     DropBase: {fileID: 8849570271434791551, guid: c80a6c7dad6a7154f97365e81666bdc4, type: 3}
-  - DropSprite: {fileID: 21300000, guid: 1a640478d41031440bed7b88b7e8c917, type: 3}
+  - DropSprite: {fileID: 21300000, guid: 37eebbba9715b594c8bc34ec6b74ec59, type: 3}
     MergeRewardPoint: 30
     DropBase: {fileID: 3892971647961013256, guid: 4493e19af86a88246836cf045f29e4ef, type: 3}
   - DropSprite: {fileID: 21300000, guid: c68c88e7d4f943748992a25cf921bf6d, type: 3}
@@ -38,14 +40,14 @@ MonoBehaviour:
     MergeRewardPoint: 50
     DropBase: {fileID: 2420623145901364568, guid: 0ae67fa9a4fc4674a9045b89c5f74bf7, type: 3}
   - DropSprite: {fileID: 21300000, guid: 329b815cc33eadb4e90d84f8aa783460, type: 3}
-    MergeRewardPoint: 75
+    MergeRewardPoint: 100
     DropBase: {fileID: 5792781036840720119, guid: 66b33e534688b5d468c304ee916d9d48, type: 3}
   - DropSprite: {fileID: 21300000, guid: 8ee7aa1f81f0be244b1758ac8f5c46a6, type: 3}
-    MergeRewardPoint: 125
+    MergeRewardPoint: 200
     DropBase: {fileID: 8758937374691061230, guid: f038c38c92c16074da60f8d4f849a1b5, type: 3}
   - DropSprite: {fileID: 21300000, guid: e2798c4c966399b48bdedf8329f987db, type: 3}
-    MergeRewardPoint: 250
+    MergeRewardPoint: 500
     DropBase: {fileID: 9189735990268306284, guid: f9c1c1029f90a6b4a89e4017cd76c45e, type: 3}
-  - DropSprite: {fileID: 21300000, guid: 099d8543844b30d42abfbed3907632bc, type: 3}
+  - DropSprite: {fileID: 21300000, guid: fd477b07d05d47247b45f4c94d871556, type: 3}
     MergeRewardPoint: 0
     DropBase: {fileID: 203276660384828806, guid: 61ef6835d5762fd46aa64e5c8dc08873, type: 3}

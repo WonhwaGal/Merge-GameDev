@@ -4,7 +4,6 @@ using GamePush;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 namespace Code.MVC
 {
@@ -16,17 +15,24 @@ namespace Code.MVC
         [SerializeField] private TextMeshProUGUI _ratingText;
         [SerializeField] private Button _leaderBoardButton;
         [SerializeField] private TextMeshProUGUI _nextText;
+        [SerializeField] private TextMeshProUGUI _keyText;
 
         [Header("Bomb settings")]
         [SerializeField] private Button _bombButton;
         [SerializeField] private Image _bombAdImage;
         [SerializeField] private Color _inactiveColor;
 
+        [Header("Key settings")]
+        [SerializeField] private Transform _keyFinalSpot;
+        [SerializeField] private GameObject _keyPanel;
+
         private float _scoreValue;
         private float _highlightTime;
+        private KeyBubble _keyView;
 
         public Button BombButton => _bombButton;
         public Button LeaderBoardButton => _leaderBoardButton;
+        public KeyBubble KeyBubble { get => _keyView; set => _keyView = value; }
         public Sprite NextSprite { get => _nextImage.sprite; set => _nextImage.sprite = value; }
         public float Score
         {
@@ -45,6 +51,7 @@ namespace Code.MVC
             _bombButton.interactable = false;
             _bombAdImage.color = SetAdImage(_bombButton.interactable);
             _bombButton.onClick.AddListener(Animate);
+            _keyPanel.SetActive(false);
         }
 
         private void Start()
@@ -65,7 +72,20 @@ namespace Code.MVC
             _ratingText.text = toShow ? rating.ToString() : string.Empty;
         }
 
-        public void SetTexts(string[] texts) => _nextText.text = texts[0];
+        public void MoveKey(bool firstClick)
+        {
+            Debug.Log($"TestMerge: GameUI caught key click {firstClick}");
+            if (firstClick)
+                StartCoroutine(MoveKeyCloser());
+            else
+                _keyPanel.SetActive(false);
+        }
+
+        public void SetTexts(string[] texts)
+        {
+            _nextText.text = texts[0];
+            _keyText.text = texts[1];
+        }
 
         public void ActivateRewardButton(bool active)
         {
@@ -90,6 +110,25 @@ namespace Code.MVC
                 }
             }
             _bombButton.transform.localScale = Vector3.one;
+        }
+
+        private IEnumerator MoveKeyCloser()
+        {
+            var key = KeyBubble.KetSetView;
+            var multiplier = Constants.KeyMultiplier;
+            key.Background.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            key.Background.SetActive(true);
+
+            while (key.transform.localScale.x < Constants.ShowKeyScale)
+            {
+                key.transform.localScale *= multiplier;
+                key.transform.position = Vector3.Slerp(key.transform.position, _keyFinalSpot.position, 0.05f);
+
+                key.Background.transform.localScale *= 1.01f;
+                yield return new WaitForSeconds(0.02f);
+            }
+            _keyPanel.SetActive(true);
+            KeyBubble.KetSetView.ReadyToTake = true;
         }
 
         private IEnumerator StartLoading()

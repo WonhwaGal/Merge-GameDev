@@ -5,9 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = nameof(DropObjectSO), menuName = "Scriptable/DropObjectSO")]
 public class DropObjectSO : ScriptableObject
 {
+    [SerializeField] private int _maxRank;
+    [SerializeField] private KeyBubble _keyPrefab;
     [SerializeField] private List<DropData> _dropsData;
 
-    public int TotalNumber() => _dropsData.Count;
+    public int TotalNumber => _maxRank;
+    public KeyBubble KeyPrefab => _keyPrefab;
 
     public DropData FindObjectData(int rank)
     {

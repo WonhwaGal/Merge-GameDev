@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics;
+
 namespace Code.MVC
 {
     public sealed class GameUIController : Controller<GameUIView, GameUIModel>
@@ -10,6 +12,7 @@ namespace Code.MVC
             Model.Init(data);
             GameEventSystem.Subscribe<CreateDropEvent>(UpdateUIData);
             GameEventSystem.Subscribe<GameControlEvent>(ReactToRetry);
+            GameEventSystem.Subscribe<KeyEvent>(ReactToKeyEvent);
         }
 
         public float GetScore() => View.Score;
@@ -40,6 +43,12 @@ namespace Code.MVC
             }
         }
 
+        private void ReactToKeyEvent(KeyEvent @event)
+        {
+            View.KeyBubble = @event.KeyBubble;
+            @event.KeyBubble.KetSetView.OnKeyClicked += View.MoveKey;
+        }
+
         protected override void OnViewAdded()
         {
             View.BombButton.onClick.AddListener(Model.ShowRewardAd);
@@ -56,6 +65,7 @@ namespace Code.MVC
         {
             GameEventSystem.UnSubscribe<CreateDropEvent>(UpdateUIData);
             GameEventSystem.UnSubscribe<GameControlEvent>(ReactToRetry);
+            GameEventSystem.UnSubscribe<KeyEvent>(ReactToKeyEvent);
             Model.Dispose();
             base.Dispose();
         }

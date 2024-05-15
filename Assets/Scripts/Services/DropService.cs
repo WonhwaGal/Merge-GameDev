@@ -14,27 +14,35 @@ namespace Code.DropLogic
         private readonly UIService _uiService;
         private readonly int _dropableRanks;
         private readonly AchievementService _achievService;
+        private readonly KeyBubble _keyBubblePrefab;
 
         public DropService(DropObjectSO dropSO, EffectList fxList)
         {
-            _pool = new (dropSO);
+            _pool = new(dropSO);
             _fxPool = new(fxList);
+            _keyBubblePrefab = dropSO.KeyPrefab;
+
 #if UNITY_EDITOR
             _dropableRanks = Constants.DropableRanks;
 #else
             _dropableRanks = GP_Variables.GetInt("DropableRanks");
 #endif
-            DropQueueHandler.AssignValues(dropSO.TotalNumber(), _dropableRanks);
+
+            DropQueueHandler.AssignValues(dropSO.TotalNumber, _dropableRanks);
             _uiService = ServiceLocator.Container.RequestFor<UIService>();
             _achievService = ServiceLocator.Container.RequestFor<AchievementService>();
             GameEventSystem.Subscribe<ManageDropEvent>(EndSession);
             _fxPool.Prespawn(PrefabType.PoofEffect, 3);
+            WinGameHandler.KeyPrefab = dropSO.KeyPrefab;
         }
 
         public void RecreateProgress(ProgressData data)
         {
             for (int i = 0; i < data.SavedDropList.Count; i++)
             {
+                //check for Key
+                if (data.SavedDropList[i].Rank == Constants.KeyRank)
+                    GameObject.Instantiate(_keyBubblePrefab, data.SavedDropList[i].Position, Quaternion.identity);
                 var result = _pool.Spawn(data.SavedDropList[i].Rank);
                 SetUpDropObject(result, data.SavedDropList[i].Position, true, true);
             }
@@ -56,15 +64,9 @@ namespace Code.DropLogic
         {
             var finalRank = one.Rank == DropQueueHandler.MaxRank;
             if (finalRank)
-            {
-                ReturnPairToPool(one, two);
-                AddEffect(PrefabType.PoofEffect, one, (one.transform.position + two.transform.position) / 2);
-                _achievService.CheckAchievement(AchievType.TopMerge, one.Rank);
-            }
+                HandleTopMerge(one, two);
             else
-            {
                 MergeObjects(one, two);
-            }
             MergeCounter.ReceiveMergeInfo(one.Rank);
         }
 
@@ -104,6 +106,17 @@ namespace Code.DropLogic
                 AddEffect(PrefabType.PoofEffect, @event.Drop, @event.Drop.Pos);
             if (@event.ReturnToPool)
                 ReturnToPool(@event.Drop);
+        }
+
+        private void HandleTopMerge(DropBase one, DropBase two)
+        {
+            var mergePoint = (one.transform.position + two.transform.position) / 2;
+            if (!GP_Player.GetBool("has_key"))
+                WinGameHandler.SpawnKey(mergePoint);
+            ReturnPairToPool(one, two);
+            AddEffect(PrefabType.PoofEffect, one, mergePoint);
+            GameEventSystem.Send(new CreateDropEvent(false, one.Rank + 1));
+            _achievService.CheckAchievement(AchievType.TopMerge, one.Rank);
         }
 
         private void ReturnPairToPool(DropBase one, DropBase two)

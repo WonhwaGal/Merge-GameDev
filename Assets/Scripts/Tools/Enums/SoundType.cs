@@ -5,5 +5,6 @@ public enum SoundType
     VolumeSound = 1,
     BackGroundMusic = 2,
     Poof = 3,
-    Drop = 4
+    Drop = 4,
+    Key = 5
 }

@@ -68,6 +68,10 @@ MonoBehaviour:
     m_Localized: My achievements
     m_Metadata:
       m_Items: []
+  - m_Id: 45272707703963648
+    m_Localized: "Great job! \n\nYour bakery is now open!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

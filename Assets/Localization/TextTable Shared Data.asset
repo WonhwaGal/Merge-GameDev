@@ -63,6 +63,10 @@ MonoBehaviour:
     m_Key: achievsB
     m_Metadata:
       m_Items: []
+  - m_Id: 45272707703963648
+    m_Key: keyText
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
