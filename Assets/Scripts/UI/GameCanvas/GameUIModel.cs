@@ -51,6 +51,7 @@ public class GameUIModel : IModel, IDisposable
                         table.GetEntry("nextUI")?.GetLocalizedString(),
                         table.GetEntry("keyText")?.GetLocalizedString()
                     });
+                    Debug.Log($"sending {table.GetEntry("keyText")?.GetLocalizedString()}");
                 }
             };
 

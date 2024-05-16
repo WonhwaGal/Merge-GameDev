@@ -58,6 +58,7 @@ public class KeySetView : MonoBehaviour
             GP_Player.Set("has_key", true);
             OnKeyClicked?.Invoke(false);
             gameObject.SetActive(false);
+            GP_Player.Sync();
         }
     }
 

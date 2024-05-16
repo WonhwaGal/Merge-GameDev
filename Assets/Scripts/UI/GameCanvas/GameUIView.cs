@@ -83,8 +83,11 @@ namespace Code.MVC
 
         public void SetTexts(string[] texts)
         {
+            Debug.Log($"keyText came array of {texts.Length}");
             _nextText.text = texts[0];
+            Debug.Log($"Setting text {texts[1]} to keyText field");
             _keyText.text = texts[1];
+            Debug.Log($"_keyText is  {_keyText.text}");
         }
 
         public void ActivateRewardButton(bool active)
