@@ -45,6 +45,7 @@ namespace Code.MVC
 
         private void ReactToKeyEvent(KeyEvent @event)
         {
+            UnityEngine.Debug.Log($"Key: ui controller received event from KEY");
             View.KeyBubble = @event.KeyBubble;
             @event.KeyBubble.KetSetView.OnKeyClicked += View.MoveKey;
         }

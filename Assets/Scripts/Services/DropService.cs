@@ -36,13 +36,16 @@ namespace Code.DropLogic
             WinGameHandler.KeyPrefab = dropSO.KeyPrefab;
         }
 
+        public KeyBubble KeySpawned { get; private set; }
+
         public void RecreateProgress(ProgressData data)
         {
             for (int i = 0; i < data.SavedDropList.Count; i++)
             {
                 //check for Key
                 if (data.SavedDropList[i].Rank == Constants.KeyRank)
-                    GameObject.Instantiate(_keyBubblePrefab, data.SavedDropList[i].Position, Quaternion.identity);
+                    KeySpawned = GameObject.Instantiate(
+                        _keyBubblePrefab, data.SavedDropList[i].Position, Quaternion.identity);
                 var result = _pool.Spawn(data.SavedDropList[i].Rank);
                 SetUpDropObject(result, data.SavedDropList[i].Position, true, true);
             }
@@ -111,6 +114,7 @@ namespace Code.DropLogic
         private void HandleTopMerge(DropBase one, DropBase two)
         {
             var mergePoint = (one.transform.position + two.transform.position) / 2;
+
             //if (!GP_Player.GetBool("has_key"))
                 WinGameHandler.SpawnKey(mergePoint);
             ReturnPairToPool(one, two);

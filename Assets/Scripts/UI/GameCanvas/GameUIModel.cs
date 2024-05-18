@@ -46,12 +46,10 @@ public class GameUIModel : IModel, IDisposable
                 if (handle.Status == AsyncOperationStatus.Succeeded)
                 {
                     var table = handle.Result;
-                    OnLanguageChanged?.Invoke(new string[2] 
+                    OnLanguageChanged?.Invoke(new string[1] 
                     { 
                         table.GetEntry("nextUI")?.GetLocalizedString(),
-                        table.GetEntry("keyText")?.GetLocalizedString()
                     });
-                    Debug.Log($"sending {table.GetEntry("keyText")?.GetLocalizedString()}");
                 }
             };
 

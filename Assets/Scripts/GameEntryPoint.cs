@@ -40,6 +40,12 @@ public class GameEntryPoint : MonoBehaviour
         _container.CurrentDrop = _dropService.CreateDropObject(_container.transform, true);
     }
 
+    private void Start()
+    {
+        if(_dropService.KeySpawned)
+            GameEventSystem.Send(new KeyEvent(_dropService.KeySpawned));
+    }
+
     private void OnDestroy()
     {
         _container.OnObjectDrop -= _dropService.CreateDropObject;

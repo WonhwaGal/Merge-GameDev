@@ -74,7 +74,6 @@ namespace Code.MVC
 
         public void MoveKey(bool firstClick)
         {
-            Debug.Log($"TestMerge: GameUI caught key click {firstClick}");
             if (firstClick)
                 StartCoroutine(MoveKeyCloser());
             else
@@ -83,11 +82,11 @@ namespace Code.MVC
 
         public void SetTexts(string[] texts)
         {
-            Debug.Log($"keyText came array of {texts.Length}");
             _nextText.text = texts[0];
-            Debug.Log($"Setting text {texts[1]} to keyText field");
-            _keyText.text = texts[1];
-            Debug.Log($"_keyText is  {_keyText.text}");
+            if (GP_Language.Current() == Language.Russian)
+                _keyText.text = "Отличная работа!\r\n\r\nТвоя пекарня теперь открыта!";
+            else
+                _keyText.text = "Great job! \r\n\r\nYour bakery is now open!";
         }
 
         public void ActivateRewardButton(bool active)
