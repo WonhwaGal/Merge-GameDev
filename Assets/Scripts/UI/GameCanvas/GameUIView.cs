@@ -29,6 +29,7 @@ namespace Code.MVC
         private float _scoreValue;
         private float _highlightTime;
         private KeyBubble _keyView;
+        private bool _bombButtonActive;
 
         public Button BombButton => _bombButton;
         public Button LeaderBoardButton => _leaderBoardButton;
@@ -75,9 +76,15 @@ namespace Code.MVC
         public void MoveKey(bool firstClick)
         {
             if (firstClick)
+            {
                 StartCoroutine(MoveKeyCloser());
+            }
             else
+            {
                 _keyPanel.SetActive(false);
+                _bombButton.interactable = _bombButtonActive;
+                _leaderBoardButton.interactable = true;
+            }
         }
 
         public void SetTexts(string[] texts)
@@ -116,6 +123,10 @@ namespace Code.MVC
 
         private IEnumerator MoveKeyCloser()
         {
+            _bombButtonActive = BombButton.interactable;
+            _bombButton.interactable = false;
+            _leaderBoardButton.interactable = false;
+
             var key = KeyBubble.KetSetView;
             var multiplier = Constants.KeyMultiplier;
             key.Background.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);

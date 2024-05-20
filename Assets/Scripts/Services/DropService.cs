@@ -115,7 +115,7 @@ namespace Code.DropLogic
         {
             var mergePoint = (one.transform.position + two.transform.position) / 2;
 
-            //if (!GP_Player.GetBool("has_key"))
+            if (!GP_Player.GetBool("has_key"))
                 WinGameHandler.SpawnKey(mergePoint);
             ReturnPairToPool(one, two);
             AddEffect(PrefabType.PoofEffect, one, mergePoint);

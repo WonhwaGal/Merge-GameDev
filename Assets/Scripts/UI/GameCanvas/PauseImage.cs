@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,16 +11,18 @@ namespace Code.UI
         [SerializeField] private Image _playImage;
         private bool _isPaused;
         private GameAction _toDoAction;
+        private bool _shouldBeDisabled = false;
 
         private void Start()
         {
             _playImage.gameObject.SetActive(false);
             GameEventSystem.Subscribe<GameControlEvent>(UpdatePause);
+            GameEventSystem.Subscribe<KeyEvent>(ReactToKeyEvent);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_toDoAction == GameAction.Lose)
+            if (_toDoAction == GameAction.Lose || _shouldBeDisabled)
                 return;
 
             _isPaused = !_isPaused;
@@ -36,11 +40,21 @@ namespace Code.UI
                 _isPaused =false;
             UpdateImage();
         }
+
         private void UpdateImage() => _playImage.gameObject.SetActive(_isPaused);
+
+        private void ReactToKeyEvent(KeyEvent @event)
+        {
+            UnityEngine.Debug.Log($"Key: pause button received event from KEY");
+            @event.KeyBubble.KetSetView.OnKeyClicked += DisableButton;
+        }
+
+        private void DisableButton(bool firstClick) => _shouldBeDisabled = firstClick;
 
         private void OnDestroy()
         {
             GameEventSystem.UnSubscribe<GameControlEvent>(UpdatePause);
+            GameEventSystem.UnSubscribe<KeyEvent>(ReactToKeyEvent);
         }
     }
 }
