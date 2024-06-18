@@ -19,7 +19,7 @@ namespace Code.Pools
         {
             T result;
             if (_inactives.Count > 0)
-                result = _inactives.Pop();
+                result = CheckResult();
             else
                 result = _factory.Create();
 
@@ -42,6 +42,21 @@ namespace Code.Pools
             if (_factory.RootTransform != null)
                 prefab.transform.SetParent(_factory.RootTransform);
             prefab.gameObject.SetActive(true);
+        }
+
+        private T CheckResult()
+        {
+            var applicant = _inactives.Peek();
+            if (applicant.gameObject.activeInHierarchy)
+            {
+                _inactives.Pop();
+                Debug.LogWarning("MERGE POOL: popped result is not deactivated");
+                return _factory.Create();
+            }
+            else
+            {
+                return _inactives.Pop();
+            }
         }
 
         public void Dispose() => _inactives.Clear();

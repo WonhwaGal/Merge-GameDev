@@ -52,6 +52,7 @@ public class GameEntryPoint : MonoBehaviour
         _uiService.Dispose();
         _saveService.Dispose();
         _soundManager.Dispose();
+        _dropService.Dispose();
         ServiceLocator.Container.RequestFor<AchievementService>().Dispose();
     }
 }

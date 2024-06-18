@@ -58,13 +58,18 @@ public class GameUIModel : IModel, IDisposable
 
     private void OnFetchRating(string category, int rating)
     {
-        if (rating <= Constants.ShowableRating)
+#if UNITY_EDITOR
+        var showableRating = Constants.ShowableRating;
+#else
+        var showableRating = GP_Variables.GetInt("ShowableRating");
+#endif
+        if (rating <= showableRating)
             _playerRating = rating;
         else
             _playerRating = 0;
         OnGetRating?.Invoke(_playerRating);
     }
-    #endregion
+#endregion
 
     #region Score
     public Sprite GetNextRank()

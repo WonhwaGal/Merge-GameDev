@@ -27,7 +27,7 @@ public class MenuDog : MonoBehaviour, IPointerClickHandler
             MoveObject(_shift);
             yield return null;
         }
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(2.5f);
 
         while(_objectT.position.y >= startPos)
         {
