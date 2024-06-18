@@ -5,6 +5,7 @@ using Code.DropLogic;
 using Code.Sounds;
 using Code.Achievements;
 using Code.Views;
+using GamePush;
 
 public class GameEntryPoint : MonoBehaviour
 {
@@ -42,8 +43,21 @@ public class GameEntryPoint : MonoBehaviour
 
     private void Start()
     {
-        if(_dropService.KeySpawned)
+        if (_dropService.KeySpawned)
             GameEventSystem.Send(new KeyEvent(_dropService.KeySpawned));
+#if !UNITY_EDITOR
+        SetRemote();
+#endif
+    }
+
+    private void SetRemote()
+    {
+        for (int i = 1; i < _so.TotalNumber; i++)
+        {
+            int remoteMergePoints = GP_Variables.GetInt($"MergePoints_{i}");
+            if (remoteMergePoints != 0)
+                _so.FindObjectData(i).MergeRewardPoint = remoteMergePoints;
+        }
     }
 
     private void OnDestroy()

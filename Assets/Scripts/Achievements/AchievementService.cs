@@ -11,7 +11,27 @@ namespace Code.Achievements
         private bool _playingNewGame;
         private int _savedScore;
 
-        public AchievementService(AchievSO so) => _achievSO = so;
+        public AchievementService(AchievSO so)
+        {
+            _achievSO = so;
+
+            for (int i = 0; i < _achievSO.AchievsByType.Count; i++)
+            {
+                var achievBlock = _achievSO.AchievsByType[i];
+                for (int j = 0; j < achievBlock.Achievements.Count; j++)
+                {
+                    var achievement = achievBlock.Achievements[j];
+                    var newValue = GP_Variables.GetInt($"Achiev_{achievement.AchievID}");
+                    if (newValue == 0)
+                        continue;
+
+                    if (achievBlock.AchievementType == AchievType.MergeByRank)
+                        achievement.Condition = GP_Variables.GetInt($"Achiev_{achievement.AchievID}");
+                    else
+                        achievement.ReferenceValue = GP_Variables.GetInt($"Achiev_{achievement.AchievID}");
+                }
+            }
+        }
 
         public event Action<Achievement> OnUnlockAchiev;
 
