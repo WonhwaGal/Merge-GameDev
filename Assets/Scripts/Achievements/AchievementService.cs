@@ -1,6 +1,8 @@
 using System;
 using static AchievSO.AchievBlock;
 using GamePush;
+using static AchievSO;
+using UnityEngine.SocialPlatforms.Impl;
 
 
 namespace Code.Achievements
@@ -65,7 +67,15 @@ namespace Code.Achievements
                 {
                     var achiev = _achievSO.AchievsByType[i].Achievements[ach];
                     if (achiev.IsUnlocked)
+                    {
+                        // new code
+                        if (_achievSO.AchievsByType[i].AchievementType == AchievType.MergeByRank)
+                            achiev.Condition = GP_Variables.GetInt($"Achiev_{achiev.AchievID}");
+                        else
+                            achiev.ReferenceValue = GP_Variables.GetInt($"Achiev_{achiev.AchievID}");
+                        // end
                         continue;
+                    }
 
                     var id = achiev.AchievID.ToString();
                     if (toZero && !achiev.IsTotal && achiev.HasProgress)
@@ -111,7 +121,7 @@ namespace Code.Achievements
         private void UnlockAchievement(Achievement achiev)
         {
             var id = achiev.AchievID.ToString();
-            if(id != null)
+            if (id != null)
             {
                 GP_Achievements.Unlock(id);
                 achiev.IsUnlocked = true;
