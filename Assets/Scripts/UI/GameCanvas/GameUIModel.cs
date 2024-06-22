@@ -37,7 +37,11 @@ public class GameUIModel : IModel, IDisposable
         UpdateTextAsync();
     }
 
-    public void OpenLeaderBoard() => GP_Leaderboard.Open(withMe: WithMe.first);
+    public void OpenLeaderBoard()
+    {
+        GP_Leaderboard.Open(withMe: WithMe.first);
+        RenewRating();
+    }
 
     public void UpdateTextAsync() =>
         LocalizationSettings.StringDatabase.GetTableAsync("TextTable").Completed +=
@@ -138,6 +142,8 @@ public class GameUIModel : IModel, IDisposable
     {
         OnActivateReward?.Invoke(toActivate);
         _bombActive = toActivate;
+        if(toActivate)
+            RenewRating();
     }
 
     private void SaveBombStatus(SaveEvent @event)

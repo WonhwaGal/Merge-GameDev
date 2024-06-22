@@ -5619,6 +5619,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 237676995465773964, guid: bb634b55276f86349bc8255dad8c4b46, type: 3}
+      propertyPath: m_text
+      value: 2345
+      objectReference: {fileID: 0}
+    - target: {fileID: 237676995465773964, guid: bb634b55276f86349bc8255dad8c4b46, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
     - target: {fileID: 924777775509947421, guid: bb634b55276f86349bc8255dad8c4b46, type: 3}
       propertyPath: _backButtonText
       value: 
@@ -6033,6 +6041,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7047032616596663787, guid: bb634b55276f86349bc8255dad8c4b46, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894826841621405737, guid: bb634b55276f86349bc8255dad8c4b46, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8111184242721923738, guid: bb634b55276f86349bc8255dad8c4b46, type: 3}
