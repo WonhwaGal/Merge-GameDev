@@ -15,6 +15,7 @@ public class EntryPoint : MonoBehaviour
 {
     [SerializeField] private StartCanvas _startCanvas;
     [SerializeField] private AchievSO _achievSO;
+    [SerializeField] private StatusSO _statusSO;
     [SerializeField] private SpriteAtlas _atlas;
 
     private SaveService _saveService;
@@ -27,7 +28,7 @@ public class EntryPoint : MonoBehaviour
         _startCanvas.ContinueButton.onClick.AddListener(() => LoadNewScene(withProgress: true));
 
         _saveService = ServiceLocator.Container.RegisterAndAssign(new SaveService());
-        _achievementService = ServiceLocator.Container.RegisterAndAssign(new AchievementService(_achievSO));
+        _achievementService = ServiceLocator.Container.RegisterAndAssign(new AchievementService(_achievSO, _statusSO));
 
         var localeInit = LocalizationSettings.InitializationOperation;
         localeInit.Completed += _ => Init();
@@ -37,6 +38,7 @@ public class EntryPoint : MonoBehaviour
         var savedData = GP_Player.GetString(Constants.DropList);
         yield return new WaitWhile(() => string.IsNullOrEmpty(savedData));
         _startCanvas.ContinueButton.interactable = _saveService.LoadProgress(savedData);
+        _startCanvas.SetCreditsText();
     }
 
     private void InitFunction(AsyncOperationHandle<LocalizationSettings> handle) => Init();

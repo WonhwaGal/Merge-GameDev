@@ -263,6 +263,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5529118964785879175, guid: 3df2141d71e47924381851355cabf503, type: 3}
+      propertyPath: _pauseView
+      value: 
+      objectReference: {fileID: 5025932147143227539}
     - target: {fileID: 5906139180281819699, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: _bombButton
       value: 
@@ -373,6 +377,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3df2141d71e47924381851355cabf503, type: 3}
+--- !u!114 &5025932147143227539 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4581077884199305197, guid: 3df2141d71e47924381851355cabf503, type: 3}
+  m_PrefabInstance: {fileID: 8803676047614199678}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ef107d6279a26419d306673b1c4b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8526701914679560243 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 898501727969775437, guid: 3df2141d71e47924381851355cabf503, type: 3}

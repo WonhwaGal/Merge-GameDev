@@ -12,9 +12,13 @@ namespace Code.MVC
         public Button ContinueButton;
         public GameObject[] _desktopObjects;
         public GameObject[] _mobileObjects;
+        public TextMeshProUGUI[] _credits;
+        public TextMeshProUGUI[] _names;
+
         private TextMeshProUGUI _startText;
         private TextMeshProUGUI _continueText;
         private bool _isMobile;
+
         public event Action OnDestroyView;
 
         private void Start()
@@ -25,6 +29,7 @@ namespace Code.MVC
             _isMobile = false;
 #else
             _isMobile = GP_Device.IsMobile();
+            SetCreditsText();
 #endif
             SetView();
         }
@@ -41,6 +46,20 @@ namespace Code.MVC
                 _desktopObjects[i].SetActive(!_isMobile);
             for (int i = 0; i < _mobileObjects.Length; i++)
                 _mobileObjects[i].SetActive(_isMobile);
+        }
+
+        public void SetCreditsText()
+        {
+#if !UNITY_EDITOR
+            if (GP_Language.Current() == Language.Russian)
+            {
+                for(int i = 0; i < 2; i++)
+                {
+                    _credits[i].text = "Создатели:";
+                    _names[i].text = "Шайхутдинова Регина\nШайхутдинова Алина";
+                }
+            }
+#endif
         }
 
         private void OnDestroy()

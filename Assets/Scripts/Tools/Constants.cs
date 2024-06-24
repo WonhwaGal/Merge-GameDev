@@ -14,6 +14,7 @@ public sealed class Constants
 
     public const float LoadAdWaitTime = 15;
     public const float DeltaTimeStep = 0.03f;
+    public const int BeginStatusAchiev = 100;
 
     //KEY SETTINGS
     public const float ShowKeyScale = 3.5f;

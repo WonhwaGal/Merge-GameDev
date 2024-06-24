@@ -3706,7 +3706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1721389263809911219, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2342852553737216337, guid: 3df2141d71e47924381851355cabf503, type: 3}
       propertyPath: _room
@@ -4328,8 +4328,7 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -467.5
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4581077884199305197, guid: 3df2141d71e47924381851355cabf503, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3df2141d71e47924381851355cabf503, type: 3}
 --- !u!224 &1577545966413307721 stripped
 RectTransform:

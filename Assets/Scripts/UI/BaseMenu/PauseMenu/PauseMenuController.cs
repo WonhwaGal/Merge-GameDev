@@ -22,6 +22,9 @@ namespace Code.MVC
             View.AchievementButton.onClick.AddListener(Model.OpenAchievements);
             SetUpBakeryPanel();
             Model.Init();
+            Model.OnCurrentStatus += View.SetStatusInfo;
+            View.OnGettingProgressPoints += Model.UpdateStatus;
+            Model.UpdateStatus();
         }
 
         private void SetUpBakeryPanel()
@@ -41,6 +44,11 @@ namespace Code.MVC
 #endif
         }
 
-        protected override void OnDispose() => OnRequestRewards = null;
+        protected override void OnDispose()
+        {
+            OnRequestRewards = null;
+            Model.OnCurrentStatus -= View.SetStatusInfo;
+            View.OnGettingProgressPoints -= Model.UpdateStatus;
+        }
     }
 }

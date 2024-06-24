@@ -1,0 +1,11 @@
+If the leaderboard stops working or showing rating:
+1) Create new leaderboard;
+2) Delete the default leaderboard with default variant;
+3) Default leaderboard should be automatically generated;
+
+Shows best scores of the players
+Показывает лучшие результаты игроков
+
+For sharing:
+I'm already at {{player.position}} place! Join me in {{game.title}}!
+Я уже на {{player.position}} месте! Присоединяйтесь ко мне в игре {{game.title}}!

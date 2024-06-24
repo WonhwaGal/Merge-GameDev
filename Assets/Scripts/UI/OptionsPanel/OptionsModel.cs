@@ -26,8 +26,8 @@ namespace Code.MVC
             _achievSO = achievSO;
             var saveService = ServiceLocator.Container.RequestFor<SaveService>();
             _actives = saveService.Actives;
-            ServiceLocator.Container.RequestFor<AchievementService>().OnUnlockAchiev
-                += OnUnlockAchiev;
+            ServiceLocator.Container
+                .RequestFor<AchievementService>().OnUnlockAchiev += OnUnlockAchiev;
 #if UNITY_EDITOR
             //Do nothing
 #else

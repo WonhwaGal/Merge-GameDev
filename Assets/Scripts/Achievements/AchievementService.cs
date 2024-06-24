@@ -1,8 +1,7 @@
 using System;
 using static AchievSO.AchievBlock;
 using GamePush;
-using static AchievSO;
-using UnityEngine.SocialPlatforms.Impl;
+using static StatusSO;
 
 
 namespace Code.Achievements
@@ -10,12 +9,16 @@ namespace Code.Achievements
     public sealed class AchievementService : IService, IDisposable
     {
         private readonly AchievSO _achievSO;
+        private readonly StatusSO _statusSo;
         private bool _playingNewGame;
         private int _savedScore;
 
-        public AchievementService(AchievSO so)
+        private string _statusAchievId;
+
+        public AchievementService(AchievSO so, StatusSO statusSo)
         {
             _achievSO = so;
+            _statusSo = statusSo;
 
             for (int i = 0; i < _achievSO.AchievsByType.Count; i++)
             {
@@ -23,6 +26,7 @@ namespace Code.Achievements
                 for (int j = 0; j < achievBlock.Achievements.Count; j++)
                 {
                     var achievement = achievBlock.Achievements[j];
+#if !UNITY_EDITOR
                     var newValue = GP_Variables.GetInt($"Achiev_{achievement.AchievID}");
                     if (newValue == 0)
                         continue;
@@ -31,13 +35,29 @@ namespace Code.Achievements
                         achievement.Condition = GP_Variables.GetInt($"Achiev_{achievement.AchievID}");
                     else
                         achievement.ReferenceValue = GP_Variables.GetInt($"Achiev_{achievement.AchievID}");
+#endif
                 }
             }
         }
 
         public event Action<Achievement> OnUnlockAchiev;
+        public event Action<PlayerStatus> OnSetStatusAchiev;
 
         public void Open() => GP_Achievements.Open();
+
+        public int ProgressPoints()
+        {
+            if(_statusAchievId == null)
+            {
+                var achiev = GetStatusAchievement();
+                _statusAchievId = achiev.AchievID.ToString();
+                achiev.SavedProgress = GP_Achievements.GetProgress(_statusAchievId);
+            }
+#if !UNITY_EDITOR
+            UpdateStatusAchievement(_statusAchievId);
+#endif
+            return GP_Achievements.GetProgress(_statusAchievId);
+        }
 
         public void CheckAchievement(AchievType type, float referenceValue)
         {
@@ -125,10 +145,60 @@ namespace Code.Achievements
             {
                 GP_Achievements.Unlock(id);
                 achiev.IsUnlocked = true;
-                OnUnlockAchiev?.Invoke(achiev);
+                if (!CheckIfStatusAchivement(achiev))
+                    OnUnlockAchiev?.Invoke(achiev);
             }
         }
 
-        public void Dispose() => OnUnlockAchiev = null;
+        private bool CheckIfStatusAchivement(Achievement achiev)
+        {
+            if (achiev.IsTotal && achiev.RewardIndex >= Constants.BeginStatusAchiev)
+            {
+                if (_statusSo.TryGetByType(achiev.RewardIndex, out PlayerStatus status))
+                    OnSetStatusAchiev?.Invoke(status);
+            }
+            return false;
+        }
+
+        private void UpdateStatusAchievement(string achievId)
+        {
+            var progress = GP_Achievements.GetProgress(achievId);
+            if (progress == 0)
+                GP_Achievements.SetProgress(achievId, (int)GP_Player.GetScore());
+
+            for (int i = _statusSo.Statuses.Count - 1; i >= 0; i--)
+            {
+                if (_statusSo.Statuses[i].Goal <= progress)
+                {
+                    OnSetStatusAchiev?.Invoke(_statusSo.Statuses[i]);
+                    UnityEngine.Debug.Log($"TestMerge: Status: found status {_statusSo.Statuses[i].Type}");
+                    return;
+                }
+            }
+        }
+
+        private Achievement GetStatusAchievement()
+        {
+            var block = _achievSO.AchievsByType.Find(x => x.AchievementType == AchievType.Score);
+            return block.Achievements[block.Achievements.Count - 1];
+        }
+
+        public bool TryGetNextStatus(PlayerStatus currentStatus, out PlayerStatus nextStatus)
+        {
+            nextStatus = null;
+            if (_statusSo.TryGetByType((int)currentStatus.Next, out PlayerStatus status))
+            {
+                nextStatus = status;
+                return true;
+            }
+
+            return false;
+        }
+
+        public void Dispose()
+        {
+            OnUnlockAchiev = null;
+            OnSetStatusAchiev = null;
+        }
     }
 }

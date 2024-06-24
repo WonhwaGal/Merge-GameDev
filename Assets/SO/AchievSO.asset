@@ -36,6 +36,13 @@ MonoBehaviour:
       ReferenceValue: 5000
       Condition: 0
       IsTotal: 0
+    - Name: Status Achievement
+      AchievID: 8289
+      RewardIndex: 100
+      HasProgress: 1
+      ReferenceValue: 500000
+      Condition: 0
+      IsTotal: 1
   - AchievementType: 1
     Achievements:
     - Name: Tea Party

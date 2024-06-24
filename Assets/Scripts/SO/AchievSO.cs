@@ -29,13 +29,13 @@ public class AchievSO : ScriptableObject
             public string Name;
             public int AchievID;
             public int RewardIndex;
-            public bool HasProgress;
+            public bool HasProgress; // "condition" achievements like "unlock top cake", "do double merge" etc.
             public float ReferenceValue;
             public int Condition;
-            public bool IsTotal;
+            public bool IsTotal; // achievements for all played games, not per game
 
             public bool IsUnlocked { get; set; }
-            public int SavedProgress { get; set; }
+            public int SavedProgress { get; set; } // for all-played-games achievements
         }
     }
 }

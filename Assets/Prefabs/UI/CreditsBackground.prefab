@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -62, y: 75}
-  m_SizeDelta: {x: 400, y: 50}
+  m_AnchoredPosition: {x: 1.1097, y: 63}
+  m_SizeDelta: {x: 526.2195, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1702534086242510350
 CanvasRenderer:
@@ -66,10 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Family effort of
-
-
-    and'
+  m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a76729d575af80429206b0d5f24d07f, type: 2}
   m_sharedMaterial: {fileID: 8656502204192288306, guid: 7a76729d575af80429206b0d5f24d07f, type: 2}
@@ -103,7 +100,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -176,7 +173,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 259, y: 204}
-  m_SizeDelta: {x: 650, y: 350}
+  m_SizeDelta: {x: 680, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4617085531611160845
 CanvasRenderer:
@@ -251,7 +248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.999878, y: -26.000061}
+  m_AnchoredPosition: {x: 13.999878, y: -31}
   m_SizeDelta: {x: 550, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4908133445259409032
@@ -282,7 +279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Shaikhutdinova Regina \n\nShaikhutdinova Alina"
+  m_text: "Shaikhutdinova Regina \nShaikhutdinova Alina"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a76729d575af80429206b0d5f24d07f, type: 2}
   m_sharedMaterial: {fileID: 8656502204192288306, guid: 7a76729d575af80429206b0d5f24d07f, type: 2}
@@ -321,7 +318,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -5
+  m_lineSpacing: 14.32
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -345,7 +342,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 18.031311, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
